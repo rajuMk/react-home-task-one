@@ -4,8 +4,10 @@ import './MoviesFound.css'
 const MoviesFound = () => {
     return(
         <>
-            <span>7</span>
-            <label>Movies Found</label>
+            <div class="MoviesFoundMain">
+                <span>7</span>
+                <label>Movies Found</label>
+            </div>
         </>
     )
 }
