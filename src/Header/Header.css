@@ -1,0 +1,16 @@
+  .headerMain {
+    background: url(https://previews.123rf.com/images/kentoh/kentoh0812/kentoh081200213/3985403-tv-channel-movie-guide-on-abstract-background.jpg);
+    min-height: 330px;
+    justify-content: center;
+  }
+  
+  .headNetflex{
+    color: #ff4d4d;
+    font-size: 20px;
+  }
+
+  .headFindMovie{
+      font-size: 35px;
+      color: #fff;
+      margin: 30px 30px
+  }
