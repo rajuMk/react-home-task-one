@@ -9,7 +9,6 @@ const Header = (props) => {
                 <p className="headNetflex pt-3">
                     <b>netflix</b>roulette
                 </p>
-                <label className="headFindMovie">FIND YOUR MOVIE</label>
                 {/* <a
                     className="App-link"
                     href="https://reactjs.org"
