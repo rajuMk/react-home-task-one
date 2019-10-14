@@ -1,0 +1,10 @@
+.sortByMain{
+    text-align: right;
+    display: table-cell;
+    width: auto;
+}
+
+.sortByMain span{
+    color: #fff;
+    font-size: 20px;
+}
