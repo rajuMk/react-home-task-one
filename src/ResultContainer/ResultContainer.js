@@ -1,12 +1,15 @@
 import React from 'react'
 import './ResultContainer.css'
 
-const ResultContainer = () => {
+const ResultContainer = (props) => {
     return (
         <>
             <div className="ResultContMain">
-               raju
+                {
+                    props.children
+                }
             </div>
+            
         </>
     )
 }
