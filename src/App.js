@@ -14,8 +14,11 @@ import MovieTile from './MovieTile/MovieTile';
 class App extends Component{
   state = {
     movies: [],
-    filteredMovies: []
+    filteredMovies: [],
+    searchBy: "title",
+    sortBy: "releaseDate"
   }
+  
   componentDidMount(){
     fetch('https://reactjs-cdp.herokuapp.com/movies')
     .then(res => res.json())
@@ -32,46 +35,69 @@ class App extends Component{
 
   filterList(serchString){
     let filteredMovies = this.state.movies;
-    if(serchString.length>0){
+    if(serchString.length>0 && this.state.searchBy == "title"){
     filteredMovies = filteredMovies.filter((movie, index) => {
       return movie.title.toLowerCase().search(
         serchString.toLowerCase()) !== -1;
     });
+  } else if(serchString.length>0 && this.state.searchBy == "genre"){
+    filteredMovies = filteredMovies.filter((movie, index) => {
+      return movie.genres.toString().toLowerCase().search(
+        serchString.toLowerCase()) !== -1;
+    });
   }
-    this.setState({filteredMovies: filteredMovies});
   
+
+  this.setState({filteredMovies: filteredMovies})
+  console.log(this.state.filteredMovies)
+  }
+    
+
+  toggleSearchHandler = (event) => {
+    let e = event.target.value;
+    this.setState({searchBy: e});
+    //console.log(this.state.searchBy)
   }
 
-onChangeHandler = (e) => {
-  console.log(e.target.value);
-  this.filterList(e.target.value)
-}
+
+  toggleSortHandler = (event) => {
+    // console.log(event.target.value);
+    let sortE = event.target.value;
+    this.setState({sortBy: event.target.value})
+    // console.log(this.state.sortBy);
+  }
+  
+
+  onChangeHandler = (e) => {
+    console.log(e.target.value);
+    this.filterList(e.target.value)
+  }
   
   render(){
     
     let Movies = (
       <div>
-        {this.state.filteredMovies.map( ( fm, index ) => {
-          return <MovieTile
+        {this.state.filteredMovies.map( ( fm, index ) => 
+          <MovieTile
             title={fm.title}
             runtime={fm.runtime}
-            poster_path = {fm.poster_path}/>
-        } )}
+            genre = {fm.genres}
+            poster_path = {fm.poster_path}
+            key = {fm.id}/>
+         )}
       </div>
     );
-
-  
 
     return (
       <div className="App">        
         <SearchContainer>
           <Header />
           <Search change={this.onChangeHandler}/>
-          <SearchBy />
+          <SearchBy click={this.toggleSearchHandler}></SearchBy>
         </SearchContainer>
         <SortContainer>
-          <MoviesFound />
-          <SortBy />
+          <MoviesFound numOfMovies={this.state.filteredMovies.length}></MoviesFound>
+          <SortBy click={this.toggleSortHandler}/>
         </SortContainer>
         <ResultContainer>
           {Movies}
