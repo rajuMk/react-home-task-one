@@ -9,6 +9,7 @@
 
 .MovieTileMain label{
     color: #fff;
+    display: block;
 }
 
 .MovieTileMain label span{
