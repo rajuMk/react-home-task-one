@@ -8,7 +8,9 @@ const MovieTile = (props) => {
         <>
             <div className="MovieTileMain">
                 <img src={props.poster_path} alt="No Movie found"></img>
-                <label>movie title is: <span>{props.title} <br/></span> movie run time is <span>{props.runtime}</span> sec </label>
+                <label>movie title is: <span>{props.title} </span> </label>
+                <label>movie run time is <span>{props.runtime} </span> Min </label>
+                <label>Movie Genre: <span>{props.genre}</span></label>
             </div>
         </>
     )
