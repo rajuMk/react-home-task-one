@@ -1,12 +1,13 @@
 import React from 'react';
 import './MoviesFound.css'
 
-const MoviesFound = () => {
+const MoviesFound = (props) => {
+    console.log(props);
     return(
         <>
-            <div class="MoviesFoundMain">
-                <span>7</span>
-                <label>Movies Found</label>
+            <div className="MoviesFoundMain">
+                <span className="mr-2"><b>{props.numOfMovies}</b></span>
+                <label> Movies Found</label>
             </div>
         </>
     )
