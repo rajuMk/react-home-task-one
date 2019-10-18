@@ -49,7 +49,7 @@ class App extends Component{
   
 
   this.setState({filteredMovies: filteredMovies})
-  console.log(this.state.filteredMovies)
+  console.log(this.state.filteredMovies);
   }
     
 
@@ -65,6 +65,28 @@ class App extends Component{
     let sortE = event.target.value;
     this.setState({sortBy: event.target.value})
     // console.log(this.state.sortBy);
+    this.sortByRequirment(sortE);
+  }
+
+  sortByRequirment(sortByButtonClick){
+    let arr = [];
+    const compartFunction = (a,b,key) =>{
+      if (a[key] < b[key]) {
+        return -1;
+      }
+      if (a[key] > b[key]) {
+        return 1;
+      }        
+      return 0;
+    }
+    if(sortByButtonClick ==='releaseDate'){
+     arr = this.state.filteredMovies.sort((a,b) => compartFunction(a,b,'release_date')); 
+    }else if(sortByButtonClick === 'rating'){
+      arr = this.state.filteredMovies.sort((a,b) => compartFunction(a,b,'vote_average'));
+    }
+    this.setState({
+      filteredMovies:arr
+    })
   }
   
 
@@ -83,6 +105,8 @@ class App extends Component{
             runtime={fm.runtime}
             genre = {fm.genres}
             poster_path = {fm.poster_path}
+            release_date = {fm.release_date}
+            vote_average = {fm.vote_average}
             key = {fm.id}/>
          )}
       </div>
