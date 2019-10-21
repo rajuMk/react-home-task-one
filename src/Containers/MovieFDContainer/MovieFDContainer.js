@@ -1,12 +1,14 @@
 import React from 'react';
 import './MovieFDContainer.css'
 
-const MovieFDContainer = () =>{
+const MovieFDContainer = (props) =>{
 
     return(
         <>
             <div class="mt-3 sortByMain">
-                <h1>Movie Full Details Container</h1>
+                {
+                props.children
+                }
             </div>
         </>
     )
