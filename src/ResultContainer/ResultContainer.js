@@ -5,9 +5,11 @@ const ResultContainer = (props) => {
     return (
         <>
             <div className="ResultContMain">
+               
                 {
                     props.children
                 }
+               
             </div>
             
         </>
