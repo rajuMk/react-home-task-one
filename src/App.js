@@ -10,6 +10,15 @@ import ResultContainer from './ResultContainer/ResultContainer'
 import SearchBy from './SearchBy/SearchBy'
 import SortBy from './SortBy/SortBy'
 import MovieTile from './MovieTile/MovieTile';
+import MovieFDContainer from './Containers/MovieFDContainer/MovieFDContainer';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
+
 
 class App extends Component{
   state = {
@@ -98,7 +107,7 @@ class App extends Component{
   render(){
     
     let Movies = (
-      <div>
+      <div className="Result">
         {this.state.filteredMovies.map( ( fm, index ) => 
           <MovieTile
             title={fm.title}
@@ -113,7 +122,9 @@ class App extends Component{
     );
 
     return (
-      <div className="App">        
+      <Router>
+      <div className="App">
+
         <SearchContainer>
           <Header />
           <Search change={this.onChangeHandler}/>
@@ -126,10 +137,22 @@ class App extends Component{
         <ResultContainer>
           {Movies}
         </ResultContainer>
-
         {/* <MovieTile Runtime={this.state.filteredMovies[0].runtime}  Title={this.state.filteredMovies[0].title}/> */}
         <FooterContainer movies={this.state.movies}/>
+        {/* <MovieFDContainer></MovieFDContainer> */}
+
+        <Switch>
+          <Route path="/">
+            <Header/>
+          </Route>
+          <Route path="/fullDetails">
+            <MovieFDContainer/>
+          </Route>
+        </Switch>
+
+
       </div>
+      </Router>
     )
  }
 }
