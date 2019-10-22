@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import MovieFDContainer from '../Containers/MovieFDContainer/MovieFDContainer';
 import MovieInfo from '../Components/MovieInfo/MovieInfo';
+import RelatedMovies from '../Components/RelatedMovies/RelatedMovies';
 
 class EndPage extends Component{    
       state = {
-        FullDetails: []
+        FullDetails: {}
       }
 
       componentDidMount(){
@@ -26,20 +27,21 @@ class EndPage extends Component{
 
     render(){
       let MoviesInfo
-      if(this.state.FullDetails > 0){
+      if(this.state.FullDetails && Object.keys(this.state.FullDetails).length > 0){
         MoviesInfo = (
         <div className="Result">
-            {this.state.FullDetails.map((fd, index) =>
+            {
                 <MovieInfo
-                    title={fd.title}
-                    runtime={fd.runtime}
-                    vote_average={fd.vote_average}
-                    tagline = {fd.tagline}
-                    poster_path={fd.poster_path}
-                    release_date={fd.release_date}
-                    id={fd.id}
+                    title={this.state.FullDetails.title}
+                    runtime={this.state.FullDetails.runtime}
+                    vote_average={this.state.FullDetails.vote_average}
+                    tagline = {this.state.FullDetails.tagline}
+                    poster_path={this.state.FullDetails.poster_path}
+                    release_date={this.state.FullDetails.release_date}
+                    genres={this.state.FullDetails.genres}
+                    id={this.state.FullDetails.id}
                 />
-            )}
+            }
         </div>
       );
     }
@@ -49,6 +51,10 @@ class EndPage extends Component{
           <div>
             <MovieFDContainer>
               {MoviesInfo}
+              { (this.state.FullDetails.genres && this.state.FullDetails.genres.length > 0) ?
+                <RelatedMovies relatedGenre={this.state.FullDetails.genres}></RelatedMovies> :
+                null
+              }
             </MovieFDContainer>
           </div>
           
