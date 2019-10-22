@@ -18,15 +18,17 @@ class RelatedMovies extends Component {
                     movies: data.data,
                     filteredMovies: data.data
                 });
+                this.realtedMovieDis(this.props.relatedGenre);
                 console.log(this.state.movies);
             })
             .catch(error => {
                 console.log('Looks like there was a problem: \n', error);
             });
-            this.realtedMovieDis(this.props.relatedGenre);
+            
     }
 
     realtedMovieDis(relGen){
+
         let filteredMovies = this.state.movies;
         filteredMovies = filteredMovies.filter((movie, index) => {
             return movie.genres.toString().toLowerCase().search(
