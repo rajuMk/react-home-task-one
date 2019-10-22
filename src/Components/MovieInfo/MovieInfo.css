@@ -1,0 +1,19 @@
+.MovieInfoMain{
+    background-color: #000;
+    width: 100%;
+    border-bottom: 45px solid #cdcdcd;
+}
+
+.label{
+    color: #fff !important;
+    display: inline-block;
+}
+
+.MovieInfoMain b{
+    color: violet;
+}
+
+.MovieInfoMain div:last-child span{
+    color: fff !important;
+    display: block;
+}
